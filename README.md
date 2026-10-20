@@ -2,6 +2,8 @@
 
 Converts black text and lines in a PDF to a color of your choice, so you can print on a single-ink printer. Runs on port 3150.
 
+*Vibe-coded with Claude because I got tired of online PDF color changers full of fake download buttons.*
+
 ## Install on the homeserver
 
 From your laptop, in the folder that contains this project:
