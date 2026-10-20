@@ -1,0 +1,7 @@
+services:
+  pdf-color-changer:
+    build: .
+    container_name: pdf-color-changer
+    ports:
+      - "3150:3150"
+    restart: unless-stopped

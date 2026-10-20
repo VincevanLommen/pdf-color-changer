@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Color Changer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>PDF Color Changer</h1>
+      <p class="lede">Turn black text and lines into a color of your choice. Handy when your printer only has one ink.</p>
+    </header>
+
+    <form action="{{ url_for('convert') }}" method="post" enctype="multipart/form-data">
+      <label class="dropzone" id="dropzone">
+        <input type="file" name="pdf" accept="application/pdf" required>
+        <span class="dropzone-title" id="file-name">Choose a PDF</span>
+        <span class="dropzone-hint">or drop it here</span>
+      </label>
+
+      <fieldset class="swatches">
+        <legend>Output color</legend>
+        {% for key, (label, rgb) in palette.items() %}
+        <label class="swatch">
+          <input type="radio" name="color" value="{{ key }}" {% if key == default %}checked{% endif %}>
+          <span class="chip" style="--chip: rgb({{ rgb[0] }}, {{ rgb[1] }}, {{ rgb[2] }})"></span>
+          <span class="swatch-label">{{ label }}</span>
+        </label>
+        {% endfor %}
+      </fieldset>
+
+      <button type="submit" class="submit">Convert PDF</button>
+    </form>
+
+    <footer>Files are processed in memory and are not stored on the server.</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
